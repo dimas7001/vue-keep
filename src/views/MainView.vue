@@ -18,9 +18,9 @@ export default {
 <style lang="sass">
   .container
     width: 100vw
-    padding: 0 20px 0
+    padding: 0 50px 0 110px
     transition: .3s all
     &_s
-      padding-left: 200px
+      padding-left: 260px
       transition: .3s all
 </style>

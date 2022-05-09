@@ -14,8 +14,20 @@
       </div>
     </div>
   </header>
-  <!-- <router-link to="/">Home</router-link> |
-    <router-link to="/re">About</router-link> -->
+  <div class="sidebar">
+    <div class="sidebar__item">
+      <img src="./assets/img/notes/notes_b.png" class="sidebar__icon">
+      <div class="sidebar__label">Your Notes</div>
+    </div>
+    <div class="sidebar__item">
+      <img src="./assets/img/archive/archive_b.png" class="sidebar__icon">
+      <div class="sidebar__label">Archived</div>
+    </div>
+    <div class="sidebar__item">
+      <img src="./assets/img/delete/delete_b.png" class="sidebar__icon">
+      <div class="sidebar__label">Bin</div>
+    </div>
+  </div>
   <router-view/>
 </template>
 
@@ -84,6 +96,11 @@
     font-size: 14px
     line-height: 17px
     color: #353535
+    overflow-x: hidden
+    -ms-overflow-style: none
+    scrollbar-width: none
+    &::-webkit-scrollbar
+      display: none
   .header
     position: fixed
     top: 0
@@ -91,13 +108,17 @@
     width: 100%
     height: 60px
     padding: 18px 0
+    background-color: rgba(255, 255, 255, .95)
     box-shadow: 0 0 5px 1px #adadad
+    z-index: 10
     &__left-part,
     &__right-part
       display: flex
       flex-direction: row
       justify-content: space-between
       align-items: center
+      & > *
+        cursor: pointer
       & > * + *
         margin-left: 30px
     &__logo
@@ -109,13 +130,13 @@
       flex-direction: row
       justify-content: space-between
       align-items: center
+      padding: 0 20px
     img
       height: 24px
   .burger
     position: relative
     width: 20px
     height: 20px
-    cursor: pointer
     &::before,
     &::after
       content: ''
@@ -143,4 +164,40 @@
       .burger__bullet
         left: calc( 100% - 4px )
         transition: .2s all
+  .sidebar
+    position: fixed
+    top: 60px
+    left: 0
+    width: 210px
+    height: calc(100vh - 60px)
+    padding: 40px 11px 30px 11px
+    background-color: #fff
+    z-index: 1
+    box-shadow: 0 5px 5px 1px #adadad
+    overflow: hidden
+    transition: .3s all
+    &_s
+      width: 60px
+      transition: .3s all
+    &__item
+      display: flex
+      flex-direction: row
+      justify-content: flex-start
+      align-items: center
+      height: 40px
+      padding: 8px 7px
+      border-radius: 15px
+      transition: .2s all
+      cursor: pointer
+      &:hover
+        background-color: #f0f0f0
+        transition: .2s all
+      & + .sidebar__item
+        margin-top: 30px
+    &__icon
+      width: 24px
+      margin-right: 20px
+    &__label
+      font-size: 20px
+      font-weight: 600
 </style>
