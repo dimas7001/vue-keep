@@ -1,26 +1,19 @@
 <template>
-  <div class="container container_s">
+  <Container class="container_s">
+    <Header />
     <Notes />
-  </div>
+  </Container>
 </template>
 
 <script>
+import { Container } from "@/styles/StyledBlocks.js"
+import Header from '@/components/Header.vue'
 import Notes from '@/components/Notes.vue'
 
 export default {
   name: 'HomeView',
   components: {
-    Notes
+    Container, Header, Notes
   }
 }
 </script>
-
-<style lang="sass">
-  .container
-    width: 100vw
-    padding: 0 50px 0 110px
-    transition: .3s all
-    &_s
-      padding-left: 260px
-      transition: .3s all
-</style>

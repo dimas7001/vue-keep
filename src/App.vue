@@ -1,19 +1,6 @@
 <template>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <header class="header">
-    <div class="container">
-      <div class="header__left-part">
-        <div class="burger">
-          <div class="burger__bullet"></div>
-        </div>
-        <div class="header__logo">VueKeep</div>
-      </div>
-      <div class="header__right-part">
-        <img class="header__customize" src="./assets/img/pantone/pantone_b.png">
-        <img class="header__logout" src="./assets/img/logout/logout_b.png">
-      </div>
-    </div>
-  </header>
+
   <div class="sidebar">
     <div class="sidebar__item">
       <img src="./assets/img/notes/notes_b.png" class="sidebar__icon">
@@ -30,6 +17,22 @@
   </div>
   <router-view/>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      min: 1,
+      max: 99999
+    }
+  },
+  methods: {
+    noteId(min, max) {
+      Math.floor(Math.random()*(max-min+1)+min)
+    }
+  },
+}
+</script>
 
 <style lang="sass">
   @font-face
