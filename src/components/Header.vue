@@ -2,9 +2,11 @@
   <HeaderBlock>
     <ContainerHeader>
       <div class="header__left-part">
-        <div class="burger">
-          <div class="burger__bullet"></div>
-        </div>
+        <BurgerBlock>
+          <div class="burger" :class="{'burger_off': !sidebarHidden}" @click="$emit('toggle-sidebar')">
+            <div class="burger__bullet"></div>
+          </div>
+        </BurgerBlock>
         <div class="header__logo">VueKeep</div>
       </div>
       <div class="header__right-part">
@@ -16,13 +18,16 @@
 </template>
 
 <script>
-import { ContainerHeader } from "@/styles/StyledBlocks.js"
-import { HeaderBlock } from "../styles/StyledBlocks.js"
+import { HeaderBlock, ContainerHeader, BurgerBlock } from "@/styles/StyledBlocks.js"
 
 export default {
   name: 'Header',
   components: {
-    HeaderBlock, ContainerHeader
-  }
+    HeaderBlock, ContainerHeader, BurgerBlock
+  },
+  props: {
+    sidebarHidden: Boolean
+  },
+  emits: ['toggle-sidebar'],
 }
 </script>

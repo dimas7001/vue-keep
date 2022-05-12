@@ -1,7 +1,7 @@
 <template>
   <NotesBlock>
     <div class="note__wrapper" v-for="note in showCurrentNotes" :key="note.id">
-      <div class="note">
+      <div class="note" @mouseleave="closeControls(note.id)" :id="note.id">
         <div class="note__title">
           {{ note.title }}
         </div>
@@ -9,7 +9,7 @@
           {{ note.content }}
         </div>
         <div class="note__controls">
-          <div class="note__more"><div></div></div>
+          <div class="note__more" @click="openControls(note.id)"><div></div></div>
           <div class="note__edit">
             <img src="../assets/img/edit/edit_w.png" alt="edit">
           </div>
@@ -34,10 +34,30 @@ export default {
   components: {
     NotesBlock
   },
+  props: {
+    notesType: String
+  },
+  methods: {
+    openControls(id) {
+      document.getElementById(id).classList.toggle('note_controls-mode')
+    },
+    closeControls(id) {
+      let element = document.querySelector(`.note_controls-mode#${id}`)
+      if (element)
+        element.classList.toggle('note_controls-mode')
+    },
+  },
   computed: {
-    ...mapGetters(['getNotes']),
+    ...mapGetters(['getNotes', 'getArchivedNotes', 'getDeletedNotes']),
     showCurrentNotes() {
-      return this.getNotes
+      switch (this.$props.notesType) {
+        case 'normal': 
+          return this.getNotes;
+        case 'archived':
+          return this.getArchivedNotes;
+        case 'deleted':
+          return this.getDeletedNotes;
+      }
     }
   }
 }

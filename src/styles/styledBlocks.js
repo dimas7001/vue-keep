@@ -53,6 +53,94 @@ export const HeaderBlock = styled.header`
   }
 `;
 
+export const BurgerBlock = styled.div`
+  .burger {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 3px;
+      position: absolute;
+      left: 0;
+      background-color: #000;
+    }
+    &::before {
+      top: 0;
+    }
+    &::after {
+      bottom: 0;
+    }
+    &__bullet {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      height: 4px;
+      width: 4px;
+      background-color: #000;
+      border-radius: 50%;
+      transition: .3s all;
+    }
+    &_off {
+      .burger__bullet {
+        left: calc( 100% - 4px );
+        transition: .3s all;
+      }
+    }
+  }
+`
+
+export const SidebarBlock = styled.div`
+  .sidebar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 210px;
+    height: calc(100vh - 60px);
+    padding: 40px 11px 30px 11px;
+    background-color: #fff;
+    z-index: 1;
+    box-shadow: 0 5px 5px 1px #adadad;
+    overflow: hidden;
+    transition: .3s all;
+    &_s {
+      width: 60px;
+      transition: .3s all;
+    }
+    &__item {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      height: 40px;
+      padding: 8px 7px;
+      border-radius: 15px;
+      transition: .2s all;
+      cursor: pointer;
+      &:hover {
+        background-color: #f0f0f0;
+        transition: .2s all;
+      }
+      & + .sidebar__item {
+        margin-top: 30px;
+      }
+    }
+    &__icon {
+      width: 24px;
+      margin-right: 20px;
+    }
+    &__label {
+      min-width: 130px;
+      font-size: 20px;
+      font-weight: 600;
+    }
+  }
+`
+
 export const NotesBlock = styled.div`
   column-width: 200px;
   column-gap: 20px;
@@ -65,12 +153,22 @@ export const NotesBlock = styled.div`
     padding: 20px 10px;
     border: 1px solid #d9d9d9;
     border-radius: 8px;
-    break-inside: avoid-column;
-    transition: .2s all;
+    transition: .25s all;
     overflow: hidden;
     &_controls-mode {
       padding: 35px 10px 5px;
-      transition: .2s all;
+      transition: .25s all;
+      .note__controls {
+        right: 5px;
+        transition: .25s all;
+        .note__more {
+          cursor: default; 
+          & > div {
+            background-color: transparent;
+            transition: .1s all;
+          }
+        } 
+      }
     }
     &:hover {
       box-shadow: 0 0 5px 1px #adadad;
@@ -83,6 +181,7 @@ export const NotesBlock = styled.div`
       min-width: 150px;
       max-width: 250px;
       padding: 5px 0;
+      break-inside: avoid-column;
     }
     &__title {
       font-size: 18px;
@@ -102,7 +201,7 @@ export const NotesBlock = styled.div`
       justify-content: space-between;
       align-items: center;
       clip: rect(0 0 0 0);
-      transition: .4s all;
+      transition: .25s all;
       cursor: default;
       & > div {
         display: flex;
@@ -118,14 +217,6 @@ export const NotesBlock = styled.div`
         & > img {
           max-width: 13px;
           max-height: 13px;
-        }
-      }
-      &_opened {
-        right: 5px;
-        transition: .4s all;
-        .note__more > div {
-          background-color: transparent;
-          transition: .1s all;
         }
       }
     }

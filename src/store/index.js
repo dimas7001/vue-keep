@@ -5,67 +5,73 @@ export default createStore({
     interval: 30000,
     notes: [
       {
-        id: 43142,
+        id: 'n43142',
         title: "Note Title",
         content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos reiciendis, quasi nihil ipsa corporis placeat",
         archived: false,
         inBin: false
       },
       {
-        id: 3562,
+        id: 'n3562',
+        title: "Note Title",
+        content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos reiciendis, quasi nihil ipsa corporis placeat",
+        archived: true,
+        inBin: false
+      },
+      {
+        id: 'n27919',
         title: "Note Title",
         content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos reiciendis, quasi nihil ipsa corporis placeat",
         archived: false,
         inBin: false
       },
       {
-        id: 27919,
+        id: 'n16302',
         title: "Note Title",
         content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos reiciendis, quasi nihil ipsa corporis placeat",
         archived: false,
         inBin: false
       },
       {
-        id: 16302,
+        id: 'n15957',
         title: "Note Title",
         content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos reiciendis, quasi nihil ipsa corporis placeat",
-        archived: false,
-        inBin: false
+        archived: true,
+        inBin: true
       },
       {
-        id: 15957,
-        title: "Note Title",
-        content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos reiciendis, quasi nihil ipsa corporis placeat",
-        archived: false,
-        inBin: false
-      },
-      {
-        id: 57889,
+        id: 'n57889',
         title: "",
         content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos reiciendis, quasi nihil ipsa corporis placeat",
         archived: false,
-        inBin: false
+        inBin: true
       },
       {
-        id: 13180,
+        id: 'n13180',
         title: "Note Title",
         content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos reiciendis, quasi nihil ipsa corporis placeat",
-        archived: false,
+        archived: true,
         inBin: false
       },
       {
-        id: 99981,
+        id: 'n99981',
         title: "Note Title",
         content: "",
         archived: false,
-        inBin: false
+        inBin: true
       },
     ]
   },
   getters: {
     getNotes (state) {
-      return state.notes.filter(({archived, inBin}) => !archived && !inBin)
-    }
+      return state.notes.filter(({ archived, inBin }) => !archived && !inBin)
+    },
+    getArchivedNotes (state) {
+      return state.notes.filter(({ archived, inBin }) => archived && !inBin)
+    },
+    getDeletedNotes (state) {
+      return state.notes.filter(({ inBin }) => inBin)
+    },
   },
   mutations: {
   },
