@@ -45,13 +45,13 @@ export const HeaderBlock = styled.header`
     &__logo {
       font-size: 30px;
       line-height: 23px;
-      font-weight: 700;
+      font-weight: 800;
     }
   }
   img {
     height: 24px;
   }
-`;
+`
 
 export const BurgerBlock = styled.div`
   .burger {
@@ -141,7 +141,7 @@ export const SidebarBlock = styled.div`
   }
 `
 
-export const NotesBlock = styled.div`
+export const NotesBlock = styled.section`
   column-width: 200px;
   column-gap: 20px;
   margin: 60px 0 0;
@@ -254,4 +254,71 @@ export const NotesBlock = styled.div`
       }
     }
   }
-`;
+`
+
+export const OverlayBlock = styled.section`
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .7);
+    z-index: 20;
+    visibility: visible;
+    &_hidden {
+      visibility: hidden;
+    }
+    &__form {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40vw;
+      height: 40vh;
+      background-color: #fff;
+      margin: 0 auto;
+      border: 1px solid #d9d9d9;
+      border-radius: 8px;
+      padding: 30px 20px 15px;
+    }
+    &__note {
+      &-title {
+        width: 100%;
+        font-weight: 600;
+        font-size: 20px;
+        padding: 10px 5px;
+      }
+      &-content {
+        width: 100%;
+        height: calc(40vh - 144px);
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 18px;
+        margin-top: 15px;
+        padding: 10px 5px;
+        resize: none;
+        &::-webkit-scrollbar{
+          display: none;
+        }
+      }
+    }
+    &__submit{
+      display: block;
+      width: 200px;
+      margin: 10px auto 0;
+      padding: 5px 15px;
+      color: #fff;
+      background-color: #353535;
+    }
+  }
+  input,
+  textarea {
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    &:focus {
+      background-color: #f0f0f0;
+    }
+  }
+`
