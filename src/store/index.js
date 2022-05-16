@@ -2,7 +2,6 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    interval: 30000,
     notes: [
       {
         id: 'n43142',
@@ -80,11 +79,35 @@ export default createStore({
     ADD_NOTE(state, payload) {
       state.notes.push({
         id: payload.id,
-        title: payload.content,
+        title: payload.title,
         content: payload.content,
         archived: false,
         inBin: false
       })
+    },
+    EDIT_NOTE(state, editedNote) {
+      state.notes.forEach(note => {
+        if (note.id === editedNote.id) {
+          note.title = editedNote.title
+          note.content = editedNote.content
+          return 
+        }
+      })
+    },
+    DELETE_NOTE(state, id) {
+      state.notes = state.notes.filter(note => note.id !== id)
+    },
+    MOVE_TO_ARCHIVE(state, id) {
+      state.notes.find(note => note.id == id).archived = true
+    },
+    MOVE_TO_BIN(state, id) {
+      state.notes.find(note => note.id == id).inBin = true
+    },
+    MOVE_OUT_ARCHIVE(state, id) {
+      state.notes.find(note => note.id == id).archived = false
+    },
+    MOVE_OUT_BIN(state, id) {
+      state.notes.find(note => note.id == id).inBin = false
     },
   },
   actions: {

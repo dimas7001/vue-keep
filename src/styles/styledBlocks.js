@@ -1,9 +1,11 @@
 import styled from "vue3-styled-components";
 
 export const Container = styled.div`
+  position: relative;
   width: 100vw;
-  padding: 0 50px 0 110px;
+  padding: 60px 50px 0 110px;
   transition: .3s all;
+  //background-color: ${props => props.theme['background-color']};
   &.container_s {
     padding-left: 260px;
     transition: .3s all;
@@ -121,6 +123,10 @@ export const SidebarBlock = styled.div`
       border-radius: 15px;
       transition: .2s all;
       cursor: pointer;
+      &_active{
+        background-color: #dedede;
+        transition: .2s all;
+      }
       &:hover {
         background-color: #f0f0f0;
         transition: .2s all;
@@ -141,13 +147,62 @@ export const SidebarBlock = styled.div`
   }
 `
 
+export const SearchBlock = styled.input`
+  position: relative;
+  display: block;
+  min-width: 50vw;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 40px auto 0;
+  padding: 10px;
+  text-align: center;
+  outline: none;
+  border: 2px solid #d9d9d9;
+  border-radius: 20px;
+  .search__clear {
+    position: absolute;
+  }
+`
+
+export const NewNoteBlock = styled.div`
+  position: absolute;
+  top: 103px;
+  right: 50px;
+  width: 40px;
+  height: 40px;
+  background-color: inherit;
+  border-radius: 50%;
+  transition: .15s all;
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    width: 27px;
+    height: 3px;
+    background-color: #353535;
+  }
+  &::before{
+    transform: translate(-50%, -50%);
+  }
+  &::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+  &:hover {
+    box-shadow: 0 0 5px 1px #adadad;
+    transform: rotate(90deg);
+    transition: .15s all;
+  }
+`
+
 export const NotesBlock = styled.section`
   column-width: 200px;
   column-gap: 20px;
-  margin: 60px 0 0;
-  padding: 20px 0;
+  margin: 0;
+  padding: 30px 0;
   overflow: visible;
-  
   .note {
     position: relative;
     padding: 20px 10px;
@@ -192,8 +247,8 @@ export const NotesBlock = styled.section`
       }
     }
     &__controls {
-      width: 125px;
       position: absolute;
+      min-width: 120px;
       top: 3px;
       right: -90px;
       display: flex;
@@ -217,6 +272,17 @@ export const NotesBlock = styled.section`
         & > img {
           max-width: 13px;
           max-height: 13px;
+        }
+      }
+      & > div + div {
+        margin-left: 7px;
+      }
+      .note {
+        &__edit,
+        &__archive {
+          &_hidden {
+            display: none;
+          }
         }
       }
     }
@@ -310,6 +376,13 @@ export const OverlayBlock = styled.section`
       padding: 5px 15px;
       color: #fff;
       background-color: #353535;
+      text-align: center;
+      border-radius: 5px;
+      transition: .05s all;
+      &:active {
+        background-color: #282828;
+        transition: .05s all;
+      }
     }
   }
   input,
@@ -320,5 +393,24 @@ export const OverlayBlock = styled.section`
     &:focus {
       background-color: #f0f0f0;
     }
+  }
+`
+
+export const AlertBlock = styled.div`
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 150px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 0 5px 1px #adadad;
+  text-align: center;
+  transition: .1s all;
+  z-index: 30;
+  &.alert_hidden {
+    bottom: -50px;
+    transition: .1s all;
   }
 `
