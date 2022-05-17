@@ -1,10 +1,10 @@
 <template>
   <Theme :theme-info="themeInfo" >
     <Body>
-      <Header :sidebar-hidden="sidebarHidden" @toggle-sidebar="toggleSidebar" @update-theme-info="updateThemeInfo" />
-      <Sidebar :sidebar-hidden="sidebarHidden" :notes-type="notesType" @toggle-notes-type="toggleNotesType" />
+      <Header :sidebar-hidden="sidebarHidden" :theme-info="themeInfo" @toggle-sidebar="toggleSidebar" @update-theme-info="updateThemeInfo" />
+      <Sidebar :sidebar-hidden="sidebarHidden" :notes-type="notesType" :theme-info="themeInfo" @toggle-notes-type="toggleNotesType" />
       <Container :class="{'container_s': !sidebarHidden}">
-        <Notes :notes-type="notesType" @toggle-overlay="toggleOverlay" @toggle-alert="toggleAlert" />
+        <Notes :notes-type="notesType" :theme-info="themeInfo" @toggle-overlay="toggleOverlay" @toggle-alert="toggleAlert" />
       </Container>
       <Overlay :overlay-info="overlayInfo" @toggle-overlay="toggleOverlay" @toggle-alert="toggleAlert" />
       <Alert :alert-info="alertInfo" @toggle-alert="toggleAlert" />

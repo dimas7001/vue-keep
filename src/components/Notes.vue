@@ -13,15 +13,15 @@
         <div class="note__controls">
           <div class="note__more" @click="openControls(note.id)"><div></div></div>
           <div class="note__edit" :class="notesType === 'deleted'? 'note__edit_hidden' : ''" @click="$emit('toggle-overlay', 'edit', note.id, note.title, note.content)">
-            <img :src="require(`@/assets/img/edit/edit_${themeMode === 'light' ? 'b' : 'w'}.png`)" alt="edit">
+            <img :src="require(`@/assets/img/edit/edit_${themeInfo.themeMode === 'light' ? 'b' : 'w'}.png`)" alt="edit">
           </div>
           <div class="note__archive" :class="notesType === 'deleted'? 'note__archive_hidden' : ''" @click="toggleArchived(note.id)">
-            <img v-if="notesType !== 'archived'" :src="require(`@/assets/img/archive/archive_${themeMode === 'light' ? 'b' : 'w'}.png`)" alt="archive">
-            <img v-else :src="require(`@/assets/img/unarchive/unarchive_${themeMode === 'light' ? 'b' : 'w'}.png`)" alt="unarchive">
+            <img v-if="notesType !== 'archived'" :src="require(`@/assets/img/archive/archive_${themeInfo.themeMode === 'light' ? 'b' : 'w'}.png`)" alt="archive">
+            <img v-else :src="require(`@/assets/img/unarchive/unarchive_${themeInfo.themeMode === 'light' ? 'b' : 'w'}.png`)" alt="unarchive">
           </div>
           <div class="note__delete" @click="toggleBin(note.id)">
-            <img v-if="notesType !== 'deleted'" :src="require(`@/assets/img/delete/delete_${themeMode === 'light' ? 'b' : 'w'}.png`)" alt="delete">
-            <img v-else :src="require(`@/assets/img/restore/restore_${themeMode === 'light' ? 'b' : 'w'}.png`)" alt="restore">
+            <img v-if="notesType !== 'deleted'" :src="require(`@/assets/img/delete/delete_${themeInfo.themeMode === 'light' ? 'b' : 'w'}.png`)" alt="delete">
+            <img v-else :src="require(`@/assets/img/restore/restore_${themeInfo.themeMode === 'light' ? 'b' : 'w'}.png`)" alt="restore">
           </div>
         </div>
       </div>
@@ -41,6 +41,7 @@ export default {
   },
   props: {
     notesType: String,
+    themeInfo: Object,
   },
   emits: ['toggle-overlay', 'toggle-alert'],
   data() {

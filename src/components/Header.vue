@@ -10,8 +10,8 @@
         <div class="header__logo">VueKeep</div>
       </div>
       <div class="header__right-part">
-        <img class="header__customize" src="@/assets/img/pantone/pantone_b.png" @click="$emit('update-theme-info', 'default', 'dark')">
-        <img class="header__logout" src="@/assets/img/logout/logout_b.png">
+        <img class="header__customize" :src="require(`@/assets/img/pantone/pantone_${themeInfo.themeMode === 'light' ? 'b' : 'w'}.png`)" @click="$emit('update-theme-info', 'default', 'dark')">
+        <img class="header__logout" :src="require(`@/assets/img/logout/logout_${themeInfo.themeMode === 'light' ? 'b' : 'w'}.png`)">
       </div>
     </ContainerHeader>
   </HeaderBlock>
@@ -26,7 +26,8 @@ export default {
     HeaderBlock, ContainerHeader, BurgerBlock
   },
   props: {
-    sidebarHidden: Boolean
+    sidebarHidden: Boolean,
+    themeInfo: Object,
   },
   emits: ['toggle-sidebar', 'update-theme-info'],
 }

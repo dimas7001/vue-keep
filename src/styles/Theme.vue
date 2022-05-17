@@ -1,5 +1,5 @@
 <template>
-  <ThemeProvider :theme="currentTheme">
+  <ThemeProvider :theme="getCurrentTheme">
     <slot></slot>
   </ThemeProvider>
 </template>
@@ -11,29 +11,15 @@ import themes from '@/styles/themes.js'
 export default {
   name: 'Theme',
   components: {
-    ThemeProvider, themes
+    ThemeProvider
   },
   props: {
     themeInfo: Object,
   },
-  data() {
-    return({
-      currentTheme: themes[this.themeInfo.theme][this.themeInfo.themeMode],
-    })
-  },
-  methods: {
-    changeTheme(newTheme, newThemeMode) {
-      this.currentTheme = themes[newTheme][newThemeMode]
-    },
-  },
-  watch: {
-    $props: {
-      handler() {
-        console.log(this.currentTheme)
-        this.currentTheme = themes[this.themeInfo.theme][this.themeInfo.themeMode]
-        console.log(this.currentTheme)
-      },
-      deep: true,
+  computed: {
+    getCurrentTheme() {
+      console.log(themes[this.themeInfo.theme][this.themeInfo.themeMode])
+      return themes[this.themeInfo.theme][this.themeInfo.themeMode]
     },
   },
 }
