@@ -13,10 +13,28 @@ export default {
   components: {
     ThemeProvider, themes
   },
+  props: {
+    themeInfo: Object,
+  },
   data() {
     return({
-      currentTheme: themes.dark
+      currentTheme: themes[this.themeInfo.theme][this.themeInfo.themeMode],
     })
+  },
+  methods: {
+    changeTheme(newTheme, newThemeMode) {
+      this.currentTheme = themes[newTheme][newThemeMode]
+    },
+  },
+  watch: {
+    $props: {
+      handler() {
+        console.log(this.currentTheme)
+        this.currentTheme = themes[this.themeInfo.theme][this.themeInfo.themeMode]
+        console.log(this.currentTheme)
+      },
+      deep: true,
+    },
   },
 }
 </script>

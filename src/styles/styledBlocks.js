@@ -1,11 +1,28 @@
 import styled from "vue3-styled-components";
 
+export const Body = styled.body`
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: "NotoSans", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: ${props => props.theme['secondary']};
+  background-color: ${props => props.theme['main']};
+  overflow-x: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`
+
 export const Container = styled.div`
   position: relative;
   width: 100vw;
   padding: 60px 50px 0 110px;
   transition: .3s all;
-  //background-color: ${props => props.theme['background-color']};
   &.container_s {
     padding-left: 260px;
     transition: .3s all;
@@ -27,8 +44,8 @@ export const HeaderBlock = styled.header`
   width: 100%;
   height: 60px;
   padding: 18px 0;
-  background-color: rgba(255, 255, 255, .95);
-  box-shadow: 0 0 5px 1px #adadad;
+  background-color: ${props => props.theme['main'] + 'f2'};
+  box-shadow: 0 0 5px 1px ${props => props.theme['highlights'] + '33'};
   z-index: 10;
   .header {
     &__left-part,
@@ -48,6 +65,7 @@ export const HeaderBlock = styled.header`
       font-size: 30px;
       line-height: 23px;
       font-weight: 800;
+      color: ${props => props.theme['highlights']};
     }
   }
   img {
@@ -68,7 +86,7 @@ export const BurgerBlock = styled.div`
       height: 3px;
       position: absolute;
       left: 0;
-      background-color: #000;
+      background-color: ${props => props.theme['highlights']};
     }
     &::before {
       top: 0;
@@ -83,7 +101,7 @@ export const BurgerBlock = styled.div`
       transform: translateY(-50%);
       height: 4px;
       width: 4px;
-      background-color: #000;
+      background-color: ${props => props.theme['highlights']};
       border-radius: 50%;
       transition: .3s all;
     }
@@ -104,9 +122,9 @@ export const SidebarBlock = styled.div`
     width: 210px;
     height: calc(100vh - 60px);
     padding: 40px 11px 30px 11px;
-    background-color: #fff;
+    background-color: inherit;
     z-index: 1;
-    box-shadow: 0 5px 5px 1px #adadad;
+    box-shadow: 0 5px 5px 1px ${props => props.theme['highlights'] + '33'};
     overflow: hidden;
     transition: .3s all;
     &_s {
@@ -124,11 +142,11 @@ export const SidebarBlock = styled.div`
       transition: .2s all;
       cursor: pointer;
       &_active{
-        background-color: #dedede;
+        background-color: ${props => props.theme['highlights'] + '1a'};
         transition: .2s all;
       }
       &:hover {
-        background-color: #f0f0f0;
+        background-color: ${props => props.theme['highlights'] + '0d'};
         transition: .2s all;
       }
       & + .sidebar__item {
@@ -143,6 +161,7 @@ export const SidebarBlock = styled.div`
       min-width: 130px;
       font-size: 20px;
       font-weight: 600;
+      color: ${props => props.theme['highlights']}
     }
   }
 `
@@ -153,11 +172,13 @@ export const SearchBlock = styled.input`
   min-width: 50vw;
   font-size: 20px;
   font-weight: 600;
+  color: ${props => props.theme['secondary']};
+  background-color: ${props => props.theme['main']};
   margin: 40px auto 0;
   padding: 10px;
   text-align: center;
   outline: none;
-  border: 2px solid #d9d9d9;
+  border: 2px solid ${props => props.theme['highlights'] + 'd9'};
   border-radius: 20px;
   .search__clear {
     position: absolute;
@@ -173,6 +194,7 @@ export const NewNoteBlock = styled.div`
   background-color: inherit;
   border-radius: 50%;
   transition: .15s all;
+  cursor: pointer;
   &::before,
   &::after {
     content: '';
@@ -182,7 +204,7 @@ export const NewNoteBlock = styled.div`
     display: block;
     width: 27px;
     height: 3px;
-    background-color: #353535;
+    background-color: ${props => props.theme['highlights']};
   }
   &::before{
     transform: translate(-50%, -50%);
@@ -191,7 +213,7 @@ export const NewNoteBlock = styled.div`
     transform: translate(-50%, -50%) rotate(90deg);
   }
   &:hover {
-    box-shadow: 0 0 5px 1px #adadad;
+    box-shadow: 0 0 5px 1px ${props => props.theme['highlights'] + '80'};
     transform: rotate(90deg);
     transition: .15s all;
   }
@@ -206,7 +228,7 @@ export const NotesBlock = styled.section`
   .note {
     position: relative;
     padding: 20px 10px;
-    border: 1px solid #d9d9d9;
+    border: 1px solid ${props => props.theme['highlights'] + 'd9'};
     border-radius: 8px;
     transition: .25s all;
     overflow: hidden;
@@ -226,7 +248,7 @@ export const NotesBlock = styled.section`
       }
     }
     &:hover {
-      box-shadow: 0 0 5px 1px #adadad;
+      box-shadow: 0 0 5px 1px ${props => props.theme['highlights'] + '80'};
       transition: .2s all;
       .note__controls {
         clip: auto
@@ -265,7 +287,7 @@ export const NotesBlock = styled.section`
         align-items: center;
         width: 25px;
         height: 25px;
-        background-color: #353535;
+        background-color: ${props => props.theme['highlights'] + '4d'};
         border-radius: 50%;
         cursor: pointer;
         transition: .2s all;
@@ -297,7 +319,7 @@ export const NotesBlock = styled.section`
         position: relative;
         height: 4px;
         width: 4px;
-        background-color: #353535;
+        background-color: ${props => props.theme['highlights']};
         border-radius: 50%;
         transition: .1s all;
         &::before,
@@ -342,9 +364,9 @@ export const OverlayBlock = styled.section`
       transform: translate(-50%, -50%);
       width: 40vw;
       height: 40vh;
-      background-color: #fff;
+      background-color: ${props => props.theme['main']};
       margin: 0 auto;
-      border: 1px solid #d9d9d9;
+      border: 1px solid ${props => props.theme['highlights'] + 'd9'};
       border-radius: 8px;
       padding: 30px 20px 15px;
     }
@@ -374,24 +396,26 @@ export const OverlayBlock = styled.section`
       width: 200px;
       margin: 10px auto 0;
       padding: 5px 15px;
-      color: #fff;
-      background-color: #353535;
+      color: ${props => props.theme['secondary']};
       text-align: center;
       border-radius: 5px;
       transition: .05s all;
-      &:active {
-        background-color: #282828;
+      cursor: pointer;
+      &:hover {
+        color: ${props => props.theme['highlights']};
         transition: .05s all;
       }
     }
   }
   input,
   textarea {
+    color: ${props => props.theme['secondary']};
+    background-color: ${props => props.theme['main']};
     border-radius: 8px;
     border: none;
     outline: none;
     &:focus {
-      background-color: #f0f0f0;
+      background-color: ${props => props.theme['highlights'] + '0d'};
     }
   }
 `
@@ -404,8 +428,9 @@ export const AlertBlock = styled.div`
   min-width: 150px;
   padding: 10px 20px;
   border-radius: 8px;
-  background-color: #fff;
-  box-shadow: 0 0 5px 1px #adadad;
+  color: inherit;
+  background-color: inherit;
+  box-shadow: 0 0 5px 1px ${props => props.theme['highlights'] + '33'};
   text-align: center;
   transition: .1s all;
   z-index: 30;

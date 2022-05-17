@@ -3,19 +3,6 @@
   <router-view/>
 </template>
 
-<script>
-export default {
-  data() {
-    return {}
-  },
-  methods: {
-    noteId(min, max) {
-      Math.floor(Math.random()*(max-min+1)+min)
-    }
-  },
-}
-</script>
-
 <style lang="sass">
   @font-face
     font-family: "NotoSans"
@@ -73,17 +60,4 @@ export default {
     font-display: swap
   *
     box-sizing: border-box
-  body
-    margin: 0
-    padding: 0
-    font-family: "NotoSans", Helvetica, Arial, sans-serif
-    font-weight: 400
-    font-size: 14px
-    line-height: 17px
-    color: #353535
-    overflow-x: hidden
-    -ms-overflow-style: none
-    scrollbar-width: none
-    &::-webkit-scrollbar
-      display: none
 </style>

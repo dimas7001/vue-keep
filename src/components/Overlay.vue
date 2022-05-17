@@ -59,7 +59,7 @@ export default {
           this.$emit('toggle-alert', 'Your note was saved')
           this.$emit('toggle-overlay')
         } else {
-          this.$emit('toggle-alert', 'Please don\'t leave both fields empty :(')
+          this.$emit('toggle-alert', 'Please don\'t leave the note empty :(')
         }
       }
       else if (this.overlayInfo.overlayMode === 'edit') {

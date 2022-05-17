@@ -10,8 +10,5 @@ export default {
   components: {
     NewNoteBlock
   },
-  props: {
-    
-  },
 }
 </script>

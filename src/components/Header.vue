@@ -10,7 +10,7 @@
         <div class="header__logo">VueKeep</div>
       </div>
       <div class="header__right-part">
-        <img class="header__customize" src="@/assets/img/pantone/pantone_b.png">
+        <img class="header__customize" src="@/assets/img/pantone/pantone_b.png" @click="$emit('update-theme-info', 'default', 'dark')">
         <img class="header__logout" src="@/assets/img/logout/logout_b.png">
       </div>
     </ContainerHeader>
@@ -28,6 +28,6 @@ export default {
   props: {
     sidebarHidden: Boolean
   },
-  emits: ['toggle-sidebar'],
+  emits: ['toggle-sidebar', 'update-theme-info'],
 }
 </script>

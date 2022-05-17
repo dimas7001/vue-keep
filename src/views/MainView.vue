@@ -1,18 +1,20 @@
 <template>
-  <Theme>
-    <Header :sidebar-hidden="sidebarHidden" @toggle-sidebar="toggleSidebar" />
-    <Sidebar :sidebar-hidden="sidebarHidden" :notes-type="notesType" @toggle-notes-type="toggleNotesType" />
-    <Container :class="{'container_s': !sidebarHidden}">
-      <Notes :notes-type="notesType" @toggle-overlay="toggleOverlay" @toggle-alert="toggleAlert" />
-    </Container>
-    <Overlay :overlay-info="overlayInfo" @toggle-overlay="toggleOverlay" @toggle-alert="toggleAlert" />
-    <Alert :alert-info="alertInfo" @toggle-alert="toggleAlert" />
+  <Theme :theme-info="themeInfo" >
+    <Body>
+      <Header :sidebar-hidden="sidebarHidden" @toggle-sidebar="toggleSidebar" @update-theme-info="updateThemeInfo" />
+      <Sidebar :sidebar-hidden="sidebarHidden" :notes-type="notesType" @toggle-notes-type="toggleNotesType" />
+      <Container :class="{'container_s': !sidebarHidden}">
+        <Notes :notes-type="notesType" @toggle-overlay="toggleOverlay" @toggle-alert="toggleAlert" />
+      </Container>
+      <Overlay :overlay-info="overlayInfo" @toggle-overlay="toggleOverlay" @toggle-alert="toggleAlert" />
+      <Alert :alert-info="alertInfo" @toggle-alert="toggleAlert" />
+    </Body>
   </Theme>
 </template>
 
 <script>
 import Theme from '@/styles/Theme.vue'
-import { Container } from "@/styles/StyledBlocks.js"
+import { Body, Container } from "@/styles/StyledBlocks.js"
 import Header from '@/components/Header.vue'
 import Sidebar from '@/components/Sidebar.vue'
 import Notes from '@/components/Notes.vue'
@@ -22,11 +24,15 @@ import Alert from '@/components/Alert.vue'
 export default {
   name: 'MainView',
   components: {
-    Theme, Header, Sidebar, Container, Notes, Overlay, Alert
+    Body, Theme, Header, Sidebar, Container, Notes, Overlay, Alert
   },
   data() {
     return {
       sidebarHidden: true,
+      themeInfo: {
+        theme: 'default',
+        themeMode: 'light'
+      },
       alertInfo: {
         alertActive: false,
         alertMessage: '',
@@ -58,7 +64,12 @@ export default {
     toggleAlert(message = '') {
       this.alertInfo.alertMessage = message
       message === '' ? this.alertInfo.alertActive = false : this.alertInfo.alertActive = true
-    }
+    },
+    updateThemeInfo(newTheme, newThemeMode) {
+      this.themeInfo.theme = newTheme
+      this.themeInfo.themeMode = newThemeMode
+      this.toggleAlert(`The theme was changed to ${newTheme + '/' + newThemeMode}`)
+    },
   }
 }
 </script>
