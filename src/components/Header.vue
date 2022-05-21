@@ -11,10 +11,13 @@
   .header__logout
     - changes the icon depending on themeInfo.themeMode = {'light', 'dark'}
 -->
-  <HeaderBlock>
+  <HeaderBlock
+      :main="themes[themeInfo.themeMode].main"
+      :highlights="themes[themeInfo.themeMode].highlights"
+  >
     <ContainerHeader>
       <div class="header__left-part">
-        <BurgerBlock>
+        <BurgerBlock :highlights="themes[themeInfo.themeMode].highlights">
           <div
             class="burger"
             :class="{'burger_off': !sidebarHidden}"
@@ -42,6 +45,7 @@
 
 <script>
 import { HeaderBlock, ContainerHeader, BurgerBlock } from "@/styles/styledBlocks.js"
+import themes from '@/styles/themes.js'
 
 export default {
   name: 'Header',
@@ -51,6 +55,7 @@ export default {
   props: {
     sidebarHidden: Boolean,
     themeInfo: Object,
+    themes: themes
   },
   emits: ['toggle-sidebar', 'update-theme-info'],
 }

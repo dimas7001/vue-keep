@@ -53,7 +53,7 @@ export default {
       sidebarHidden: true,
       themeInfo: {
         theme: 'default',
-        themeMode: 'dark'
+        themeMode: 'light'
       },
       alertInfo: {
         alertActive: false,
