@@ -1,6 +1,7 @@
 import styled from "vue3-styled-components";
 
 let props = { secondary: String, main: String, highlights: String };
+let properties = { main: String, highlights: String };
 
 export const Body = styled('body', props)`
   min-height: 100vh;
@@ -39,15 +40,15 @@ export const ContainerHeader = Container.extend`
   padding: 0 20px;
 `
 
-export const HeaderBlock = styled('header', props)`
+export const HeaderBlock = styled('header', properties)`
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 60px;
   padding: 18px 0;
-  background-color: ${props => props.theme['main'] + 'f2'};
-  box-shadow: 0 0 5px 1px ${props => props.theme['highlights'] + '33'};
+  background-color: ${properties => properties.main + 'f2'};
+  box-shadow: 0 0 5px 1px ${properties => properties.highlights + '33'};
   z-index: 10;
   .header {
     &__left-part,
@@ -67,7 +68,7 @@ export const HeaderBlock = styled('header', props)`
       font-size: 30px;
       line-height: 23px;
       font-weight: 800;
-      color: ${props => props.theme['highlights']};
+      color: ${properties => properties.highlights};
     }
   }
   img {
@@ -75,7 +76,7 @@ export const HeaderBlock = styled('header', props)`
   }
 `
 
-export const BurgerBlock = styled('div', props)`
+export const BurgerBlock = styled('div', properties)`
   .burger {
     position: relative;
     width: 20px;
@@ -88,7 +89,7 @@ export const BurgerBlock = styled('div', props)`
       height: 3px;
       position: absolute;
       left: 0;
-      background-color: ${props => props.theme['highlights']};
+      background-color: ${properties => properties.highlights};
     }
     &::before {
       top: 0;
@@ -103,7 +104,7 @@ export const BurgerBlock = styled('div', props)`
       transform: translateY(-50%);
       height: 4px;
       width: 4px;
-      background-color: ${props => props.theme['highlights']};
+      background-color: ${properties => properties.highlights};
       border-radius: 50%;
       transition: .3s all;
     }
