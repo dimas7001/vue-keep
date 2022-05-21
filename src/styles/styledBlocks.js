@@ -1,6 +1,8 @@
 import styled from "vue3-styled-components";
 
-export const Body = styled.body`
+let props = { secondary: String, main: String, highlights: String };
+
+export const Body = styled('body', props)`
   min-height: 100vh;
   margin: 0;
   padding: 0;
@@ -18,7 +20,7 @@ export const Body = styled.body`
   }
 `
 
-export const Container = styled.div`
+export const Container = styled('div', props)`
   position: relative;
   width: 100vw;
   padding: 60px 50px 0 110px;
@@ -37,7 +39,7 @@ export const ContainerHeader = Container.extend`
   padding: 0 20px;
 `
 
-export const HeaderBlock = styled.header`
+export const HeaderBlock = styled('header', props)`
   position: fixed;
   top: 0;
   left: 0;
@@ -73,7 +75,7 @@ export const HeaderBlock = styled.header`
   }
 `
 
-export const BurgerBlock = styled.div`
+export const BurgerBlock = styled('div', props)`
   .burger {
     position: relative;
     width: 20px;
@@ -114,7 +116,7 @@ export const BurgerBlock = styled.div`
   }
 `
 
-export const SidebarBlock = styled.div`
+export const SidebarBlock = styled('div', props)`
   .sidebar {
     position: fixed;
     top: 60px;
@@ -166,7 +168,7 @@ export const SidebarBlock = styled.div`
   }
 `
 
-export const SearchBlock = styled.input`
+export const SearchBlock = styled('input', props)`
   position: relative;
   display: block;
   min-width: 50vw;
@@ -185,7 +187,7 @@ export const SearchBlock = styled.input`
   }
 `
 
-export const NewNoteBlock = styled.div`
+export const NewNoteBlock = styled('div', props)`
   position: absolute;
   top: 103px;
   right: 50px;
@@ -219,7 +221,8 @@ export const NewNoteBlock = styled.div`
   }
 `
 
-export const NotesBlock = styled.section`
+export const NotesBlock = styled('section', props)`
+  position: relative;
   column-width: 200px;
   column-gap: 20px;
   margin: 0;
@@ -259,6 +262,9 @@ export const NotesBlock = styled.section`
       max-width: 250px;
       padding: 5px 0;
       break-inside: avoid-column;
+      & + .note__no-notes{
+        display: none;
+      }
     }
     &__title {
       font-size: 18px;
@@ -341,10 +347,16 @@ export const NotesBlock = styled.section`
         }
       }
     }
+    &__no-notes{
+      position: absolute;
+      width: 100%;
+      margin-top: 20px;
+      text-align: center;
+    }
   }
 `
 
-export const OverlayBlock = styled.section`
+export const OverlayBlock = styled('section', props)`
   .overlay {
     position: absolute;
     top: 0;
@@ -420,7 +432,7 @@ export const OverlayBlock = styled.section`
   }
 `
 
-export const AlertBlock = styled.div`
+export const AlertBlock = styled('div', props)`
   position: fixed;
   bottom: 20px;
   left: 50%;

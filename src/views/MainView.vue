@@ -1,20 +1,42 @@
 <template>
   <Theme :theme-info="themeInfo" >
     <Body>
-      <Header :sidebar-hidden="sidebarHidden" :theme-info="themeInfo" @toggle-sidebar="toggleSidebar" @update-theme-info="updateThemeInfo" />
-      <Sidebar :sidebar-hidden="sidebarHidden" :notes-type="notesType" :theme-info="themeInfo" @toggle-notes-type="toggleNotesType" />
+      <Header
+        :sidebar-hidden="sidebarHidden"
+        :theme-info="themeInfo"
+        @toggle-sidebar="toggleSidebar"
+        @update-theme-info="updateThemeInfo"
+      />
+      <Sidebar
+        :sidebar-hidden="sidebarHidden"
+        :notes-type="notesType"
+        :theme-info="themeInfo"
+        @toggle-notes-type="toggleNotesType"
+      />
       <Container :class="{'container_s': !sidebarHidden}">
-        <Notes :notes-type="notesType" :theme-info="themeInfo" @toggle-overlay="toggleOverlay" @toggle-alert="toggleAlert" />
+        <Notes
+          :notes-type="notesType"
+          :theme-info="themeInfo"
+          @toggle-overlay="toggleOverlay"
+          @toggle-alert="toggleAlert"
+        />
       </Container>
-      <Overlay :overlay-info="overlayInfo" @toggle-overlay="toggleOverlay" @toggle-alert="toggleAlert" />
-      <Alert :alert-info="alertInfo" @toggle-alert="toggleAlert" />
+      <Overlay
+        :overlay-info="overlayInfo"
+        @toggle-overlay="toggleOverlay"
+        @toggle-alert="toggleAlert"
+      />
+      <Alert
+        :alert-info="alertInfo"
+        @toggle-alert="toggleAlert"
+      />
     </Body>
   </Theme>
 </template>
 
 <script>
-import Theme from '@/styles/Theme.vue'
-import { Body, Container } from "@/styles/StyledBlocks.js"
+import Theme from '@/components/Theme.vue'
+import { Body, Container } from "@/styles/styledBlocks.js"
 import Header from '@/components/Header.vue'
 import Sidebar from '@/components/Sidebar.vue'
 import Notes from '@/components/Notes.vue'
@@ -31,7 +53,7 @@ export default {
       sidebarHidden: true,
       themeInfo: {
         theme: 'default',
-        themeMode: 'light'
+        themeMode: 'dark'
       },
       alertInfo: {
         alertActive: false,
@@ -48,24 +70,24 @@ export default {
     }
   },
   methods: {
-    toggleSidebar() {
+    toggleSidebar() { //opening/closing the overlay
       this.sidebarHidden = !this.sidebarHidden
     },
-    toggleOverlay(mode = 'add', noteID = '', noteTitle = '', noteContent = '') {
+    toggleOverlay(mode = 'add', noteID = '', noteTitle = '', noteContent = '') {  //opens/closes an overlay with passing note data if mode = edit
       this.overlayInfo.overlayMode = mode
       this.overlayInfo.noteID = noteID
       this.overlayInfo.noteTitle = noteTitle
       this.overlayInfo.noteContent = noteContent
       this.overlayInfo.overlayHidden = !this.overlayInfo.overlayHidden
     },
-    toggleNotesType(newType) {
+    toggleNotesType(newType) {  //changes notesType variable that leads to changing showed notes type [normal, archived, deleted]
       this.notesType = newType
     },
-    toggleAlert(message = '') {
+    toggleAlert(message = '') { //show/hide alert block
       this.alertInfo.alertMessage = message
       message === '' ? this.alertInfo.alertActive = false : this.alertInfo.alertActive = true
     },
-    updateThemeInfo(newTheme, newThemeMode) {
+    updateThemeInfo(newTheme, newThemeMode) { //updates theme variables when theme changed
       this.themeInfo.theme = newTheme
       this.themeInfo.themeMode = newThemeMode
       this.toggleAlert(`The theme was changed to ${newTheme + '/' + newThemeMode}`)

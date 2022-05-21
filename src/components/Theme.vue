@@ -1,5 +1,11 @@
 <template>
-  <ThemeProvider :theme="getCurrentTheme">
+<!--
+  ThemeProvider
+    - receives theme object and spread in on all the children
+-->
+  <ThemeProvider
+    :theme="getCurrentTheme"
+  >
     <slot></slot>
   </ThemeProvider>
 </template>
@@ -16,8 +22,8 @@ export default {
   props: {
     themeInfo: Object,
   },
-  computed: {
-    getCurrentTheme() {
+  computed: { 
+    getCurrentTheme() { //return current theme
       console.log(themes[this.themeInfo.theme][this.themeInfo.themeMode])
       return themes[this.themeInfo.theme][this.themeInfo.themeMode]
     },

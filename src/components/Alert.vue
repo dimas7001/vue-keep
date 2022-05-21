@@ -1,11 +1,20 @@
 <template>
-  <AlertBlock :class="{'alert_hidden': !alertInfo.alertActive}" @click="hideAlert">
+<!--
+  AlertBlock
+    - shown only if alertInfo.alertActive = true
+    - when click on active alert it hides
+    - as a content have message from props alertInfo.alertMessage
+-->
+  <AlertBlock
+    :class="{'alert_hidden': !alertInfo.alertActive}"
+    @click="hideAlert"
+  >
     {{ alertInfo.alertMessage }}
   </AlertBlock>
 </template>
 
 <script>
-import { AlertBlock } from "@/styles/StyledBlocks.js"
+import { AlertBlock } from "@/styles/styledBlocks.js"
 
 export default {
   name: 'Alert',
@@ -18,12 +27,12 @@ export default {
   emits: ['toggle-alert'],
   data() {
     return ({
-      interval: 2500,
+      interval: 2500, //time in ms before alert is hidden automatically
       currentTimeout: null
     })
   },
   methods: {
-    hideAlert() {
+    hideAlert() { //clears the hide timeout and hides alert
       clearInterval(this.currentTimeout)
       this.currentTimeout = null
       this.$emit('toggle-alert')
@@ -31,9 +40,10 @@ export default {
   },
   watch: {
     $props: {
-      handler() {
-        clearInterval(this.currentTimeout)
-        this.currentTimeout = setTimeout(() => this.$emit('toggle-alert'), this.interval)
+      handler() { //when have new alert
+        if (this.currentTimeout)
+          clearInterval(this.currentTimeout)  //destroy current timeout if exists
+        this.currentTimeout = setTimeout(() => this.$emit('toggle-alert'), this.interval) //set timeout after which alert will be automatically hidden
       },
       deep: true,
     }

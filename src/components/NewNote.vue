@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { NewNoteBlock } from "@/styles/StyledBlocks.js"
+import { NewNoteBlock } from "@/styles/styledBlocks.js"
 
 export default {
   name: 'NewNote',
