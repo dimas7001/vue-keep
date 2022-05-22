@@ -1,46 +1,50 @@
-<template>
 <!--
-  SearchBlock
-    - after 3 character filled filters current notes
-    - binded to searchValue variable
+SearchBlock
+  - after 3 character filled filters current notes
+  - binded to searchValue variable
 
-  NewNote
-    - opens overlay in 'add' (default) mode
-  
-  .note__wrapper
-    - contains loop throuh result of showCurrentNotes that depends on current type of notes to show
+NewNote
+  - opens overlay in 'add' (default) mode
 
-  .note
-    - have note id attribute for proper work of edit and show/hide econtrols functions
-    - when mouseleave close controls if opened
+.note__wrapper
+  - contains loop throuh result of showCurrentNotes that depends on current type of notes to show
 
-  .note__more
-    - when click open controls
+.note
+  - have note id attribute for proper work of edit and show/hide econtrols functions
+  - when mouseleave close controls if opened
 
-  .note__edit
-    - hidden when shown deleted notes
-    - when clicked opens overlay in 'edit' mode
-    - changes the icon color depending on themeInfo.themeMode = {'light', 'dark'}
+.note__more
+  - when click open controls
 
-  .note__archive
-    - hidden when shown deleted notes
-    - changes the icon image if shown normal or archived notes
-    - changes the icon color depending on themeInfo.themeMode = {'light', 'dark'}
-    - when click archives/unarchives note
+.note__edit
+  - hidden when shown deleted notes
+  - when clicked opens overlay in 'edit' mode
+  - changes the icon color depending on themeInfo.themeMode = {'light', 'dark'}
 
-  .note__delete
-    - changes the icon image if shown deleted or other notes
-    - changes the icon color depending on themeInfo.themeMode = {'light', 'dark'}
-    - when click noves note to (for notes not in bin) / out of (for notes in bin) bin
+.note__archive
+  - hidden when shown deleted notes
+  - changes the icon image if shown normal or archived notes
+  - changes the icon color depending on themeInfo.themeMode = {'light', 'dark'}
+  - when click archives/unarchives note
+
+.note__delete
+  - changes the icon image if shown deleted or other notes
+  - changes the icon color depending on themeInfo.themeMode = {'light', 'dark'}
+  - when click noves note to (for notes not in bin) / out of (for notes in bin) bin
 -->
+<template>
   <SearchBlock
     placeholder="To search please fill in at least 3 signs"
+    :theme="theme"
     v-model="searchValue"
   />
   <NewNote
+    :theme="theme"
     @click="$emit('toggle-overlay')"
   />
-  <NotesBlock>
+  <NotesBlock
+    :theme="theme"  
+  >
     <div
       class="note__wrapper"
       v-for="note in showCurrentNotes"
@@ -125,6 +129,7 @@ export default {
     themeInfo: Object,
   },
   emits: ['toggle-overlay', 'toggle-alert'],
+  inject: ['theme'],
   data() {
     return ({
       searchValue: '',

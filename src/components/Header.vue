@@ -1,20 +1,20 @@
-<template>
 <!--
-  .burger
-    - move a .burger__bullet depending on sidebarHidden value
-    - emits sidebar show/hide
-  
-  .header__customize
-    - changes the icon depending on themeInfo.themeMode = {'light', 'dark'}
-    - emits theme change
+.burger
+  - move a .burger__bullet depending on sidebarHidden value
+  - emits sidebar show/hide
 
-  .header__logout
-    - changes the icon depending on themeInfo.themeMode = {'light', 'dark'}
+.header__customize
+  - changes the icon depending on themeInfo.themeMode = {'light', 'dark'}
+  - emits theme change
+
+.header__logout
+  - changes the icon depending on themeInfo.themeMode = {'light', 'dark'}
 -->
-  <HeaderBlock>
+<template>
+  <HeaderBlock :theme="theme">
     <ContainerHeader>
       <div class="header__left-part">
-        <BurgerBlock>
+        <BurgerBlock :theme="theme">
           <div
             class="burger"
             :class="{'burger_off': !sidebarHidden}"
@@ -53,5 +53,6 @@ export default {
     themeInfo: Object,
   },
   emits: ['toggle-sidebar', 'update-theme-info'],
+  inject: ['theme'],
 }
 </script>

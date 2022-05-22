@@ -1,41 +1,43 @@
 <template>
-  <Theme :theme-info="themeInfo" >
-    <Body>
-      <Header
-        :sidebar-hidden="sidebarHidden"
-        :theme-info="themeInfo"
-        @toggle-sidebar="toggleSidebar"
-        @update-theme-info="updateThemeInfo"
-      />
-      <Sidebar
-        :sidebar-hidden="sidebarHidden"
+  <Body :theme="getCurrentTheme">
+    <Header
+      :sidebar-hidden="sidebarHidden"
+      :theme-info="themeInfo"
+      @toggle-sidebar="toggleSidebar"
+      @update-theme-info="updateThemeInfo"
+    />
+    <Sidebar
+      :sidebar-hidden="sidebarHidden"
+      :notes-type="notesType"
+      :theme-info="themeInfo"
+      @toggle-notes-type="toggleNotesType"
+    />
+    <Container
+      :class="{'container_s': !sidebarHidden}"
+      :theme="getCurrentTheme"
+    >
+      <Notes
         :notes-type="notesType"
         :theme-info="themeInfo"
-        @toggle-notes-type="toggleNotesType"
-      />
-      <Container :class="{'container_s': !sidebarHidden}">
-        <Notes
-          :notes-type="notesType"
-          :theme-info="themeInfo"
-          @toggle-overlay="toggleOverlay"
-          @toggle-alert="toggleAlert"
-        />
-      </Container>
-      <Overlay
-        :overlay-info="overlayInfo"
         @toggle-overlay="toggleOverlay"
         @toggle-alert="toggleAlert"
       />
-      <Alert
-        :alert-info="alertInfo"
-        @toggle-alert="toggleAlert"
-      />
-    </Body>
-  </Theme>
+    </Container>
+    <Overlay
+      :overlay-info="overlayInfo"
+      @toggle-overlay="toggleOverlay"
+      @toggle-alert="toggleAlert"
+    />
+    <Alert
+      :alert-info="alertInfo"
+      @toggle-alert="toggleAlert"
+    />
+  </Body>
 </template>
 
 <script>
-import Theme from '@/components/Theme.vue'
+import { computed } from 'vue'
+import themes from '@/styles/themes.js'
 import { Body, Container } from "@/styles/styledBlocks.js"
 import Header from '@/components/Header.vue'
 import Sidebar from '@/components/Sidebar.vue'
@@ -46,14 +48,14 @@ import Alert from '@/components/Alert.vue'
 export default {
   name: 'MainView',
   components: {
-    Body, Theme, Header, Sidebar, Container, Notes, Overlay, Alert
+    Body, Header, Sidebar, Container, Notes, Overlay, Alert
   },
   data() {
     return {
       sidebarHidden: true,
       themeInfo: {
         theme: 'default',
-        themeMode: 'dark'
+        themeMode: 'light'
       },
       alertInfo: {
         alertActive: false,
@@ -92,6 +94,16 @@ export default {
       this.themeInfo.themeMode = newThemeMode
       this.toggleAlert(`The theme was changed to ${newTheme + '/' + newThemeMode}`)
     },
-  }
+  },
+  computed: {
+    getCurrentTheme() { //return current theme
+      return themes[this.themeInfo.theme][this.themeInfo.themeMode]
+    },
+  },
+  provide() { //provide current theme for all components
+    return {
+      theme: computed(() => this.getCurrentTheme),
+    }
+  },
 }
 </script>

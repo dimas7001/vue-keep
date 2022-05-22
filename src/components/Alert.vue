@@ -1,12 +1,12 @@
-<template>
-<!--
-  AlertBlock
-    - shown only if alertInfo.alertActive = true
-    - when click on active alert it hides
-    - as a content have message from props alertInfo.alertMessage
+<!-- AlertBlock
+  - shown only if alertInfo.alertActive = true
+  - when click on active alert it hides
+  - as a content have message from props alertInfo.alertMessage
 -->
+<template>
   <AlertBlock
     :class="{'alert_hidden': !alertInfo.alertActive}"
+    :theme="theme"
     @click="hideAlert"
   >
     {{ alertInfo.alertMessage }}
@@ -25,6 +25,7 @@ export default {
     alertInfo: Object,
   },
   emits: ['toggle-alert'],
+  inject: ['theme'],
   data() {
     return ({
       interval: 2500, //time in ms before alert is hidden automatically

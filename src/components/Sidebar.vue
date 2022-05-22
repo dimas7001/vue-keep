@@ -1,16 +1,16 @@
-<template>
-<!-- 
-  .sidebar
-    - change the width if sidebarHidden value changes
+<!--
+.sidebar
+  - change the width if sidebarHidden value changes
 
-  .sidebar__item
-    - hightlighted if matching type of notes shown
-    - emits change of type of notes shown
-  
-  .sidebar__icon
-    - changes the icons depending on themeInfo.themeMode = {'light', 'dark'}
+.sidebar__item
+  - hightlighted if matching type of notes shown
+  - emits change of type of notes shown
+
+.sidebar__icon
+  - changes the icons depending on themeInfo.themeMode = {'light', 'dark'}
 -->
-  <SidebarBlock>
+<template>
+  <SidebarBlock :theme="theme">
     <div
       class="sidebar"
       :class="{'sidebar_s': sidebarHidden}"
@@ -65,5 +65,6 @@ export default {
     themeInfo: Object,
   },
   emits: ['toggle-notes-type'],
+  inject: ['theme'],
 }
 </script>

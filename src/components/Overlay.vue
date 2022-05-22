@@ -1,22 +1,22 @@
-<template>
 <!--
-  .overlay
-    - appears only when overlayInfo.overlayHidden = false
-    - disappears when click exactly on it
+.overlay
+  - appears only when overlayInfo.overlayHidden = false
+  - disappears when click exactly on it
 
-  .overlay__form
-    - runs saveNote method when submitted
+.overlay__form
+  - runs saveNote method when submitted
 
-  .overlay__note-title
-    - binded with noteTitle variable
+.overlay__note-title
+  - binded with noteTitle variable
 
-  .overlay__note-content
-    - binded with noteContent variable
+.overlay__note-content
+  - binded with noteContent variable
 
-  .overlay__submit
-    - runs saveNote method when clicked
+.overlay__submit
+  - runs saveNote method when clicked
 -->
-  <OverlayBlock>
+<template>
+  <OverlayBlock :theme="theme">
     <div
       class="overlay"
       :class="{'overlay_hidden': overlayInfo.overlayHidden}"
@@ -60,6 +60,7 @@ export default {
     overlayInfo: Object
   },
   emits: ['toggle-overlay', 'toggle-alert'],
+  inject: ['theme'],
   data() {
     return ({
       minID: 0, //min id number

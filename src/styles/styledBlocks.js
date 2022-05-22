@@ -1,8 +1,6 @@
 import styled from "vue3-styled-components";
 
-let props = { secondary: String, main: String, highlights: String };
-
-export const Body = styled('body', props)`
+export const Body = styled.div`
   min-height: 100vh;
   margin: 0;
   padding: 0;
@@ -10,9 +8,9 @@ export const Body = styled('body', props)`
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-  color: ${props => props.theme['secondary']};
-  background-color: ${props => props.theme['main']};
-  overflow-x: hidden;
+  color: ${props => props.theme.secondary};
+  background-color: ${props => props.theme.main};
+  overflow: hidden;
   -ms-overflow-style: none;
   scrollbar-width: none;
   &::-webkit-scrollbar {
@@ -20,7 +18,7 @@ export const Body = styled('body', props)`
   }
 `
 
-export const Container = styled('div', props)`
+export const Container = styled.div`
   position: relative;
   width: 100vw;
   padding: 60px 50px 0 110px;
@@ -39,15 +37,15 @@ export const ContainerHeader = Container.extend`
   padding: 0 20px;
 `
 
-export const HeaderBlock = styled('header', props)`
+export const HeaderBlock = styled.header`
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 60px;
   padding: 18px 0;
-  background-color: ${props => props.theme['main'] + 'f2'};
-  box-shadow: 0 0 5px 1px ${props => props.theme['highlights'] + '33'};
+  background-color: ${props => props.theme.main + 'f2'};
+  box-shadow: 0 0 5px 1px ${props => props.theme.highlights + '33'};
   z-index: 10;
   .header {
     &__left-part,
@@ -67,7 +65,7 @@ export const HeaderBlock = styled('header', props)`
       font-size: 30px;
       line-height: 23px;
       font-weight: 800;
-      color: ${props => props.theme['highlights']};
+      color: ${props => props.theme.highlights};
     }
   }
   img {
@@ -75,7 +73,7 @@ export const HeaderBlock = styled('header', props)`
   }
 `
 
-export const BurgerBlock = styled('div', props)`
+export const BurgerBlock = styled.div`
   .burger {
     position: relative;
     width: 20px;
@@ -88,7 +86,7 @@ export const BurgerBlock = styled('div', props)`
       height: 3px;
       position: absolute;
       left: 0;
-      background-color: ${props => props.theme['highlights']};
+      background-color: ${props => props.theme.highlights};
     }
     &::before {
       top: 0;
@@ -103,7 +101,7 @@ export const BurgerBlock = styled('div', props)`
       transform: translateY(-50%);
       height: 4px;
       width: 4px;
-      background-color: ${props => props.theme['highlights']};
+      background-color: ${props => props.theme.highlights};
       border-radius: 50%;
       transition: .3s all;
     }
@@ -116,7 +114,7 @@ export const BurgerBlock = styled('div', props)`
   }
 `
 
-export const SidebarBlock = styled('div', props)`
+export const SidebarBlock = styled.div`
   .sidebar {
     position: fixed;
     top: 60px;
@@ -126,7 +124,7 @@ export const SidebarBlock = styled('div', props)`
     padding: 40px 11px 30px 11px;
     background-color: inherit;
     z-index: 1;
-    box-shadow: 0 5px 5px 1px ${props => props.theme['highlights'] + '33'};
+    box-shadow: 0 5px 5px 1px ${props => props.theme.highlights + '33'};
     overflow: hidden;
     transition: .3s all;
     &_s {
@@ -144,11 +142,11 @@ export const SidebarBlock = styled('div', props)`
       transition: .2s all;
       cursor: pointer;
       &_active{
-        background-color: ${props => props.theme['highlights'] + '1a'};
+        background-color: ${props => props.theme.highlights + '1a'};
         transition: .2s all;
       }
       &:hover {
-        background-color: ${props => props.theme['highlights'] + '0d'};
+        background-color: ${props => props.theme.highlights + '0d'};
         transition: .2s all;
       }
       & + .sidebar__item {
@@ -163,31 +161,31 @@ export const SidebarBlock = styled('div', props)`
       min-width: 130px;
       font-size: 20px;
       font-weight: 600;
-      color: ${props => props.theme['highlights']}
+      color: ${props => props.theme.highlights}
     }
   }
 `
 
-export const SearchBlock = styled('input', props)`
+export const SearchBlock = styled.input`
   position: relative;
   display: block;
   min-width: 50vw;
   font-size: 20px;
   font-weight: 600;
-  color: ${props => props.theme['secondary']};
-  background-color: ${props => props.theme['main']};
+  color: ${props => props.theme.secondary};
+  background-color: ${props => props.theme.main};
   margin: 40px auto 0;
   padding: 10px;
   text-align: center;
   outline: none;
-  border: 2px solid ${props => props.theme['highlights'] + 'd9'};
+  border: 2px solid ${props => props.theme.highlights + 'd9'};
   border-radius: 20px;
   .search__clear {
     position: absolute;
   }
 `
 
-export const NewNoteBlock = styled('div', props)`
+export const NewNoteBlock = styled.div`
   position: absolute;
   top: 103px;
   right: 50px;
@@ -206,7 +204,7 @@ export const NewNoteBlock = styled('div', props)`
     display: block;
     width: 27px;
     height: 3px;
-    background-color: ${props => props.theme['highlights']};
+    background-color: ${props => props.theme.highlights};
   }
   &::before{
     transform: translate(-50%, -50%);
@@ -215,13 +213,13 @@ export const NewNoteBlock = styled('div', props)`
     transform: translate(-50%, -50%) rotate(90deg);
   }
   &:hover {
-    box-shadow: 0 0 5px 1px ${props => props.theme['highlights'] + '80'};
+    box-shadow: 0 0 5px 1px ${props => props.theme.highlights + '80'};
     transform: rotate(90deg);
     transition: .15s all;
   }
 `
 
-export const NotesBlock = styled('section', props)`
+export const NotesBlock = styled.section`
   position: relative;
   column-width: 200px;
   column-gap: 20px;
@@ -231,7 +229,7 @@ export const NotesBlock = styled('section', props)`
   .note {
     position: relative;
     padding: 20px 10px;
-    border: 1px solid ${props => props.theme['highlights'] + 'd9'};
+    border: 1px solid ${props => props.theme.highlights + 'd9'};
     border-radius: 8px;
     transition: .25s all;
     overflow: hidden;
@@ -251,7 +249,7 @@ export const NotesBlock = styled('section', props)`
       }
     }
     &:hover {
-      box-shadow: 0 0 5px 1px ${props => props.theme['highlights'] + '80'};
+      box-shadow: 0 0 5px 1px ${props => props.theme.highlights + '80'};
       transition: .2s all;
       .note__controls {
         clip: auto
@@ -293,7 +291,7 @@ export const NotesBlock = styled('section', props)`
         align-items: center;
         width: 25px;
         height: 25px;
-        background-color: ${props => props.theme['highlights'] + '4d'};
+        background-color: ${props => props.theme.highlights + '4d'};
         border-radius: 50%;
         cursor: pointer;
         transition: .2s all;
@@ -325,7 +323,7 @@ export const NotesBlock = styled('section', props)`
         position: relative;
         height: 4px;
         width: 4px;
-        background-color: ${props => props.theme['highlights']};
+        background-color: ${props => props.theme.highlights};
         border-radius: 50%;
         transition: .1s all;
         &::before,
@@ -356,7 +354,7 @@ export const NotesBlock = styled('section', props)`
   }
 `
 
-export const OverlayBlock = styled('section', props)`
+export const OverlayBlock = styled.section`
   .overlay {
     position: absolute;
     top: 0;
@@ -376,9 +374,9 @@ export const OverlayBlock = styled('section', props)`
       transform: translate(-50%, -50%);
       width: 40vw;
       height: 40vh;
-      background-color: ${props => props.theme['main']};
+      background-color: ${props => props.theme.main};
       margin: 0 auto;
-      border: 1px solid ${props => props.theme['highlights'] + 'd9'};
+      border: 1px solid ${props => props.theme.highlights + 'd9'};
       border-radius: 8px;
       padding: 30px 20px 15px;
     }
@@ -408,31 +406,31 @@ export const OverlayBlock = styled('section', props)`
       width: 200px;
       margin: 10px auto 0;
       padding: 5px 15px;
-      color: ${props => props.theme['secondary']};
+      color: ${props => props.theme.secondary};
       text-align: center;
       border-radius: 5px;
       transition: .05s all;
       cursor: pointer;
       &:hover {
-        color: ${props => props.theme['highlights']};
+        color: ${props => props.theme.highlights};
         transition: .05s all;
       }
     }
   }
   input,
   textarea {
-    color: ${props => props.theme['secondary']};
-    background-color: ${props => props.theme['main']};
+    color: ${props => props.theme.secondary};
+    background-color: ${props => props.theme.main};
     border-radius: 8px;
     border: none;
     outline: none;
     &:focus {
-      background-color: ${props => props.theme['highlights'] + '0d'};
+      background-color: ${props => props.theme.highlights + '0d'};
     }
   }
 `
 
-export const AlertBlock = styled('div', props)`
+export const AlertBlock = styled.div`
   position: fixed;
   bottom: 20px;
   left: 50%;
@@ -442,7 +440,7 @@ export const AlertBlock = styled('div', props)`
   border-radius: 8px;
   color: inherit;
   background-color: inherit;
-  box-shadow: 0 0 5px 1px ${props => props.theme['highlights'] + '33'};
+  box-shadow: 0 0 5px 1px ${props => props.theme.highlights + '33'};
   text-align: center;
   transition: .1s all;
   z-index: 30;
