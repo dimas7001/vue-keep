@@ -67,6 +67,54 @@ export const HeaderBlock = styled.header`
       font-weight: 800;
       color: ${props => props.theme.highlights};
     }
+    &__customize {
+      position: relative;
+      &:hover {
+        .header__customize-img {
+          transform: translateX(-24px) rotate(-90deg);
+          transition: .2s all;
+        }
+        .header__dropdown {
+          display: block;
+        }
+      }
+      &-img{
+        position: relative;
+        transition: .2s all;
+        z-index: 20;
+      }
+    }
+    &__dropdown {
+      position: absolute;
+      top: -5px;
+      right: -15px;
+      padding: 37px 5px 10px;
+      background-color: ${props => props.theme.main + 'f2'};
+      box-shadow: 0 0 5px 1px ${props => props.theme.highlights + '33'};
+      text-align: center;
+      display: none;
+      cursor: default;
+      z-index: 15;
+      &-item {
+        transition: .2s all;
+        &_active {
+          background-color: ${props => props.theme.highlights + '33'};
+          transition: .2s all;
+        }
+        &:hover {
+          background-color: ${props => props.theme.highlights + '1a'};
+          transition: .2s all;
+        }
+      }
+      & > * {
+        border-radius: 5px;
+        padding: 5px;
+        cursor: pointer;
+      }
+      & > * + * {
+        //border-top: 1px solid ${props => props.theme.highlights + 'd9'};
+      }
+    }
   }
   img {
     height: 24px;
@@ -142,11 +190,11 @@ export const SidebarBlock = styled.div`
       transition: .2s all;
       cursor: pointer;
       &_active{
-        background-color: ${props => props.theme.highlights + '1a'};
+        background-color: ${props => props.theme.highlights + '33'};
         transition: .2s all;
       }
       &:hover {
-        background-color: ${props => props.theme.highlights + '0d'};
+        background-color: ${props => props.theme.highlights + '1a'};
         transition: .2s all;
       }
       & + .sidebar__item {
@@ -271,6 +319,9 @@ export const NotesBlock = styled.section`
       & + .note__content {
         margin-top: 10px
       }
+    }
+    &__content{
+      white-space: pre-wrap;
     }
     &__controls {
       position: absolute;
@@ -424,8 +475,11 @@ export const OverlayBlock = styled.section`
     border-radius: 8px;
     border: none;
     outline: none;
+    white-space: pre-wrap;
+    transition: .05s all;
     &:focus {
-      background-color: ${props => props.theme.highlights + '0d'};
+      background-color: ${props => props.theme.highlights + '1a'};
+      transition: .05s all;
     }
   }
 `

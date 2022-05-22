@@ -43,7 +43,7 @@ NewNote
     @click="$emit('toggle-overlay')"
   />
   <NotesBlock
-    :theme="theme"  
+    :theme="theme"
   >
     <div
       class="note__wrapper"
@@ -54,13 +54,15 @@ NewNote
         class="note"
         @mouseleave="closeControls(note.id)"
         :id="note.id"
+        v-cloak
       >
         <div class="note__title">
           {{ note.title }}
         </div>
-        <div class="note__content">
-          {{ note.content }}
-        </div>
+        <div
+          class="note__content"
+          v-html="note.content"
+        ></div>
         <div class="note__controls">
           <div
             class="note__more"

@@ -15,7 +15,7 @@ const themes = {
     light: {
       'secondary': '#262626',
       'main': '#ffffff',
-      'highlights': '#00ccc0',
+      'highlights': '#459395',
     },
     dark: {
       'secondary': '#e1e3e6',

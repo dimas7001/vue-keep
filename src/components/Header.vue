@@ -26,10 +26,38 @@
         <div class="header__logo">VueKeep</div>
       </div>
       <div class="header__right-part">
+        <div class="header__customize">
+          <img
+            class="header__customize-img"
+            :src="require(`@/assets/img/pantone/pantone_${themeInfo.themeMode === 'light' ? 'b' : 'w'}.png`)"
+          >
+          <div class="header__dropdown">
+            <div
+              class="header__dropdown-item"
+              :class="{'header__dropdown-item_active': themeInfo.theme === 'default'}"
+              @click="$emit('update-theme', 'default')"
+            >Default</div>
+            <div
+              class="header__dropdown-item"
+              :class="{'header__dropdown-item_active': themeInfo.theme === 'fresh'}"
+              @click="$emit('update-theme', 'fresh')"
+            >Fresh</div>
+            <div
+              class="header__dropdown-item"
+              :class="{'header__dropdown-item_active': themeInfo.theme === 'experimental'}"
+              @click="$emit('update-theme', 'experimental')"
+            >Experimental</div>
+          </div>
+        </div>
         <img
-          class="header__customize"
-          :src="require(`@/assets/img/pantone/pantone_${themeInfo.themeMode === 'light' ? 'b' : 'w'}.png`)"
-          @click="$emit('update-theme-info', 'default', 'dark')"
+          v-if="themeInfo.themeMode === 'dark'"
+          :src="require(`@/assets/img/sun/sun_${themeInfo.themeMode === 'light' ? 'b' : 'w'}.png`)"
+          @click="$emit('update-theme-mode', 'light')"
+        >
+        <img
+          v-else
+          :src="require(`@/assets/img/moon/moon_${themeInfo.themeMode === 'light' ? 'b' : 'w'}.png`)"
+          @click="$emit('update-theme-mode', 'dark')"
         >
         <img
           class="header__logout"
@@ -52,7 +80,7 @@ export default {
     sidebarHidden: Boolean,
     themeInfo: Object,
   },
-  emits: ['toggle-sidebar', 'update-theme-info'],
+  emits: ['toggle-sidebar', 'update-theme', 'update-theme-mode'],
   inject: ['theme'],
 }
 </script>

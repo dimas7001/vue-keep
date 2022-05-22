@@ -60,4 +60,6 @@
     font-display: swap
   *
     box-sizing: border-box
+  [v-cloak]
+    display: none
 </style>

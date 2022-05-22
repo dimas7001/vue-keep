@@ -4,7 +4,8 @@
       :sidebar-hidden="sidebarHidden"
       :theme-info="themeInfo"
       @toggle-sidebar="toggleSidebar"
-      @update-theme-info="updateThemeInfo"
+      @update-theme="updateTheme"
+      @update-theme-mode="updateThemeMode"
     />
     <Sidebar
       :sidebar-hidden="sidebarHidden"
@@ -89,10 +90,13 @@ export default {
       this.alertInfo.alertMessage = message
       message === '' ? this.alertInfo.alertActive = false : this.alertInfo.alertActive = true
     },
-    updateThemeInfo(newTheme, newThemeMode) { //updates theme variables when theme changed
+    updateTheme(newTheme) { //updates theme variable when theme changed
       this.themeInfo.theme = newTheme
+      this.toggleAlert(`The theme was changed to ${newTheme}`)
+    },
+    updateThemeMode(newThemeMode) { //updates themeMode variables when theme mode changed
       this.themeInfo.themeMode = newThemeMode
-      this.toggleAlert(`The theme was changed to ${newTheme + '/' + newThemeMode}`)
+      this.toggleAlert(`The theme mode was changed to ${newThemeMode}`)
     },
   },
   computed: {
