@@ -1,10 +1,11 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: () => import('../views/MainView.vue')  //lasy-load used for all components
+    //lasy-load used for all components
+    component: () => import('../views/MainView.vue')
   },
   {
     path: '/login',
@@ -16,11 +17,11 @@ const routes = [
     name: 'registration',
     component: () => import('../views/EnterView.vue')
   }
-]
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
-})
+});
 
-export default router
+export default router;

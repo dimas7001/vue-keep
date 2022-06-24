@@ -35,6 +35,6 @@ const themes = {
       'highlights': '#ed1c24',
     }
   },
-}
+};
 
-export default themes
+export default themes;

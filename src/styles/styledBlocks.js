@@ -16,7 +16,7 @@ export const Body = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-`
+`;
 
 export const Container = styled.div`
   position: relative;
@@ -27,7 +27,7 @@ export const Container = styled.div`
     padding-left: 260px;
     transition: .3s all;
   }
-`
+`;
 
 export const ContainerHeader = Container.extend`
   display: flex;
@@ -35,7 +35,7 @@ export const ContainerHeader = Container.extend`
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
-`
+`;
 
 export const HeaderBlock = styled.header`
   position: fixed;
@@ -119,7 +119,7 @@ export const HeaderBlock = styled.header`
   img {
     height: 24px;
   }
-`
+`;
 
 export const BurgerBlock = styled.div`
   .burger {
@@ -160,7 +160,7 @@ export const BurgerBlock = styled.div`
       }
     }
   }
-`
+`;
 
 export const SidebarBlock = styled.div`
   .sidebar {
@@ -212,7 +212,7 @@ export const SidebarBlock = styled.div`
       color: ${props => props.theme.highlights}
     }
   }
-`
+`;
 
 export const SearchBlock = styled.input`
   position: relative;
@@ -231,7 +231,7 @@ export const SearchBlock = styled.input`
   .search__clear {
     position: absolute;
   }
-`
+`;
 
 export const NewNoteBlock = styled.div`
   position: absolute;
@@ -265,7 +265,7 @@ export const NewNoteBlock = styled.div`
     transform: rotate(90deg);
     transition: .15s all;
   }
-`
+`;
 
 export const NotesBlock = styled.section`
   position: relative;
@@ -403,7 +403,7 @@ export const NotesBlock = styled.section`
       text-align: center;
     }
   }
-`
+`;
 
 export const OverlayBlock = styled.section`
   .overlay {
@@ -482,7 +482,7 @@ export const OverlayBlock = styled.section`
       transition: .05s all;
     }
   }
-`
+`;
 
 export const AlertBlock = styled.div`
   position: fixed;
@@ -502,4 +502,4 @@ export const AlertBlock = styled.div`
     bottom: -50px;
     transition: .1s all;
   }
-`
+`;

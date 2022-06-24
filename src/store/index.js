@@ -1,4 +1,4 @@
-import { createStore } from 'vuex'
+import { createStore } from 'vuex';
 
 export default createStore({
   state: {
@@ -105,17 +105,17 @@ export default createStore({
   },
   getters: {
     getNotes(state) { //sends object with normal notes
-      return state.notes.filter(({ archived, inBin }) => !archived && !inBin)
+      return state.notes.filter(({ archived, inBin }) => !archived && !inBin);
     },
     getArchivedNotes(state) { //sends object with archived notes
-      return state.notes.filter(({ archived, inBin }) => archived && !inBin)
+      return state.notes.filter(({ archived, inBin }) => archived && !inBin);
     },
     getDeletedNotes(state) {  //sends object with notes in bin
-      return state.notes.filter(({ inBin }) => inBin)
+      return state.notes.filter(({ inBin }) => inBin);
     },
-    idExists: (state) => (id) => {  //check if map with specific id exists
-      return state.notes.map(({ id }) => id).includes(id)
-    },
+    idExists: state => id =>   //check if map with specific id exists
+      state.notes.map(({ id }) => id).includes(id)
+    ,
   },
   mutations: {
     ADD_NOTE(state, payload) {  //add new note to notes object
@@ -125,31 +125,36 @@ export default createStore({
         content: payload.content,
         archived: false,
         inBin: false
-      })
+      });
     },
     EDIT_NOTE(state, editedNote) { //edit existing note
       state.notes.forEach(note => {
         if (note.id === editedNote.id) {
-          note.title = editedNote.title
-          note.content = editedNote.content
-          return 
+          note.title = editedNote.title;
+          note.content = editedNote.content;
+          return;
         }
-      })
+      });
     },
-    DELETE_NOTE(state, id) {  //delete note with specific id from notes object
-      state.notes = state.notes.filter(note => note.id !== id)
+    //delete note with specific id from notes object
+    DELETE_NOTE(state, id) {
+      state.notes = state.notes.filter(note => note.id !== id);
     },
-    MOVE_TO_ARCHIVE(state, id) {  //change archived property of note with specific id to true
-      state.notes.find(note => note.id == id).archived = true
+    //change archived property of note with specific id to true
+    MOVE_TO_ARCHIVE(state, id) {
+      state.notes.find(note => note.id == id).archived = true;
     },
-    MOVE_TO_BIN(state, id) {  //change inBin property of note with specific id to true
-      state.notes.find(note => note.id == id).inBin = true
+    //change inBin property of note with specific id to true
+    MOVE_TO_BIN(state, id) {
+      state.notes.find(note => note.id == id).inBin = true;
     },
-    MOVE_OUT_ARCHIVE(state, id) { //change archived property of note with specific id to false
-      state.notes.find(note => note.id == id).archived = false
+    //change archived property of note with specific id to false
+    MOVE_OUT_ARCHIVE(state, id) {
+      state.notes.find(note => note.id == id).archived = false;
     },
-    MOVE_OUT_BIN(state, id) { //change inBin property of note with specific id to false
-      state.notes.find(note => note.id == id).inBin = false
+    //change inBin property of note with specific id to false
+    MOVE_OUT_BIN(state, id) {
+      state.notes.find(note => note.id == id).inBin = false;
     },
   }
-})
+});
